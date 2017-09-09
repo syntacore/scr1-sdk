@@ -1,0 +1,13 @@
+[submodule "scr1"]
+	path = scr1
+	url = https://github.com/syntacore/scr1
+[submodule "fpga"]
+	path = fpga
+	url = https://github.com/syntacore/fpga-sdk-prj
+[submodule "sw/sc-bl"]
+	path = sw/sc-bl
+	url = https://github.com/syntacore/sc-bl
+[submodule "sw/zephyr"]
+	path = sw/zephyr
+	url = https://github.com/syntacore/zephyr
+	branch = scr1

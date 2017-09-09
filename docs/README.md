@@ -1,0 +1,2 @@
+# SCRx SDK documentation folder
+
