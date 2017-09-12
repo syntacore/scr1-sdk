@@ -6,13 +6,14 @@ all: riscv
 bmarks = dhry21
 
 dst_dir          ?= $(CURDIR)
-src_dir          := $(root_dir)/tests/benchmarks/dhrystone21/
-common_dir       := $(root_dir)/tests/common/
-tests_common_dir := ./tests_common/
+src_dir          := $(root_dir)/dhry21/
+tests_common_dir := ../tests_common/
 
 include $(tests_common_dir)tests_common.mk
 
-VPATH += $(src_dir) $(tests_common_dir) $(common_dir)
+$(info src_dir=$(src_dir))
+
+VPATH += $(src_dir) $(tests_common_dir)
 
 FLAGS_ = $(PORT_CFLAGS)
 FLAGS_ += $(XLFLAGS)
@@ -20,16 +21,16 @@ FLAGS_ += $(XCFLAGS)
 
 FLAGS_STR = "$(FLAGS_)"
 
-CFLAGS = -static -Wa,-march=$(MARCH) -std=gnu99 $(PORT_CFLAGS) $(XLFLAGS) -fno-common -fno-builtin-printf -DFLAGS_STR=\"$(FLAGS_STR)\"
-LFLAGS = -nostartfiles -nostdlib $(XLFLAGS) -lc -lgcc
+CFLAGS = -static -Wa,-march=$(MARCH) -march=$(MARCH) -mabi=$(MABI) -std=gnu99 $(PORT_CFLAGS) $(XLFLAGS) -fno-common -fno-builtin-printf -DFLAGS_STR=\"$(FLAGS_STR)\"
+LFLAGS = -march=$(MARCH) -mabi=$(MABI) -nostartfiles -nostdlib $(XLFLAGS) -lc -lgcc
 
 CFLAGS += -DITERATIONS=$(ITERATIONS)
 
-bmarks_defs += -DSELF_TIMED=1 -DTIME=1
+bmarks_defs += -DSELF_TIMED=1
 
 build_dir ?= $(dst_dir)/
 
-incs  += -I. -I$(src_dir) -I$(tests_common_dir) -I$(common_dir)
+incs  += -I. -I$(src_dir) -I$(tests_common_dir)
 objs  :=
 
 dhry21_c_src = dhry_1.c dhry_2.c

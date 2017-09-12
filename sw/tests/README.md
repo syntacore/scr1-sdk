@@ -10,6 +10,9 @@ Prerequisites
 --------------
 
     riscv64 multilib toolchain
+or
+
+    riscv32 toolchain
 
 Supported target platforms
 --------------

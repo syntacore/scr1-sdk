@@ -5,39 +5,40 @@ LD = $(CC)
 OBJDUMP = $(CROSS_PREFIX)objdump
 OBJCOPY = $(CROSS_PREFIX)objcopy
 
-MARCH ?= rv32imfd
+MARCH ?= rv32im
+MABI ?= ilp32
 MEM ?= tcm
 OPT ?= 2
 SYS_CLK ?= 25000000
 RTC_HZ ?= 1000000
 UART_BAUDRATE ?= 115200
 
-build_siffix := -scr1
+build_siffix := 
 
 ld_script = $(MEM).ld
 
 ifeq ("$(OPT)","3lto")
 PORT_CFLAGS=-O3 -funroll-loops -fpeel-loops -fgcse-sm -fgcse-las
 XLFLAGS=-flto
-build_siffix := $(build_siffix).o3lto
+build_siffix := $(build_siffix)-o3lto
 endif
 
 ifeq ("$(OPT)","3")
 PORT_CFLAGS=-O3
 XLFLAGS=
-build_siffix := $(build_siffix).o3
+build_siffix := $(build_siffix)-o3
 endif
 
 ifeq ("$(OPT)","2")
 PORT_CFLAGS=-O2
 XLFLAGS=
-build_siffix := $(build_siffix).o2
+build_siffix := $(build_siffix)-o2
 endif
 
 ifeq ("$(OPT)","2lto")
 PORT_CFLAGS=-O2 -funroll-loops
 XLFLAGS=-flto
-build_siffix := $(build_siffix).o2lto
+build_siffix := $(build_siffix)-o2lto
 endif
 
 PORT_CFLAGS+=$(EXT_PORT_CFLAGS)

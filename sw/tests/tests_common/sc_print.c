@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2012-2015, The Regents of the University of California (Regents).
 All Rights Reserved.
 
@@ -22,7 +23,7 @@ THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
 PURPOSE. THE SOFTWARE AND ACCOMPANYING DOCUMENTATION, IF ANY, PROVIDED
 HEREUNDER IS PROVIDED "AS IS". REGENTS HAS NO OBLIGATION TO PROVIDE
 MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
-
+*/
 
 #include <string.h>
 #include <stdarg.h>
@@ -32,21 +33,7 @@ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 #define CHAR_BIT (8)
 
 #undef putchar
-int
-putchar(int ch) {
-	static __thread char buf[65] __attribute__((aligned(64)));
-    static __thread int buflen = 0;
-
-    buf[buflen++] = ch;
-
-	if ( ch == '\n' || buflen == sizeof(buf) - 1) {
-        buf[buflen] = '\0';
-        uart_puts(buf);
-        buflen = 0;
-    }
-
-    return 0;
-}
+int putchar(int ch);
 
 static void
 printf_putch(int ch, void** data)
