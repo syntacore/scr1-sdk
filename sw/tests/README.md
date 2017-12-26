@@ -17,8 +17,11 @@ or
 Supported target platforms
 --------------
 
-    arty
-    de10lite
+Target name | Description | Clock, MHz | TCM | RAM
+------ | ----------- | --------- | ----- | -----
+arty_scr1     | Digilent Arty A7  | 25 | 64K | -
+de10lite_scr1 | Terasic DE10-lite | 20 | 64K | 64M
+a5_scr1       | Intel Arria V GX FPGA Starter Kit | 30 | 128K | 256M
 
 Build SCR1 FPGA tests
 --------------
@@ -31,5 +34,5 @@ To build tests execute:
 
     $ make
 
-After the build process complets the target tests files are created in scr-sdk/images/arty, scr-sdk/images/de10lite.
+After the build process complets the target tests files are created in scr-sdk/images/arty/scr1, scr-sdk/images/de10lite/scr1, scr-sdk/images/a5/scr1.
 Note that tests build for TCM memory, and must be load at adress 0xf0000000, and then run from 0xf0000200.

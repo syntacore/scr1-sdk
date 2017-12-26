@@ -14,24 +14,30 @@ test_results := $(bld_dir)/test_results.txt
 test_info := $(bld_dir)/test_info
 
 # Environment
-export CROSS_PREFIX ?= riscv32-unknown-elf-
+export CROSS_PREFIX ?= riscv64-unknown-elf-
 
 # Targets
 .PHONY: fpga_sw
 
-fpga_sw: dhrystone21_fpga_arty dhrystone21_fpga_de10lite
+fpga_sw: dhrystone21_fpga_arty dhrystone21_fpga_de10lite dhrystone21_fpga_a5
 
 dhrystone21_fpga_arty:
 	$(eval export SYS_CLK := 25000000)
 	$(info arty_sys_clk=$(SYS_CLK))
-	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/arty/scr1 OPT=3lto clean all 
-	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/arty/scr1 OPT=2 clean all 
+	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/arty/scr1 OPT=3lto clean all
+	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/arty/scr1 OPT=2 clean all
 
 dhrystone21_fpga_de10lite:
 	$(eval export SYS_CLK := 20000000)
 	$(info de10lite_sys_clk=$(SYS_CLK))
 	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/de10lite/scr1 OPT=3lto clean all
-	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/de10lite/scr1 OPT=2 clean all 
+	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/de10lite/scr1 OPT=2 clean all
+
+dhrystone21_fpga_a5:
+	$(eval export SYS_CLK := 30000000)
+	$(info de10lite_sys_clk=$(SYS_CLK))
+	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/a5/scr1 OPT=3lto clean all
+	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/a5/scr1 OPT=2 clean all
 
 clean:
 	$(MAKE) -C ./dhry21 dst_dir=$(root_dir)/../../images/arty/scr1 OPT=3lto clean
