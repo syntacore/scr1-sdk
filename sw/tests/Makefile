@@ -35,7 +35,7 @@ dhrystone21_fpga_de10lite:
 
 dhrystone21_fpga_a5:
 	$(eval export SYS_CLK := 30000000)
-	$(info de10lite_sys_clk=$(SYS_CLK))
+	$(info a5_sys_clk=$(SYS_CLK))
 	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/a5/scr1 OPT=3lto clean all
 	$(MAKE) -C ./dhry21 ITERATIONS=500 dst_dir=$(root_dir)/../../images/a5/scr1 OPT=2 clean all
 
