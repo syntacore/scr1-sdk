@@ -21,7 +21,7 @@ Make can process the following optional arguments:
 
 Argument | Description | Values
 ------ | ----------- | ---------
-PLATFORM  | target platform     | **a5_scr1** **de10lite_scr1** **arty_scr1**
+PLATFORM  | target platform     | **a5_scr1** **de10lite_scr1** **arty_scr1** **nexys4ddr_scr1**
 OPT       | optimization preset | **0** (-O0), **2** (-O2), **3** (-O3), **g** (-Og -g3)
 
 By default, PLATFORM=arty_scr1 and OPT=2 argument values are used
